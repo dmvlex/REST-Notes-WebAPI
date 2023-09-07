@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Notes.Application.Intefaces
+namespace Notes.Application.Interfaces
 {
     public interface INoteDBContext //Реализуется в Notes.Persistance. Но для слабой связи создаем интерфейс тут
     {

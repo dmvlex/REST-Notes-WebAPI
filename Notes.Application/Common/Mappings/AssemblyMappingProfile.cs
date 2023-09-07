@@ -21,7 +21,6 @@ namespace Notes.Application.Common.Mappings
                 .Any(i => i.IsGenericType &&
                 i.GetGenericTypeDefinition() == typeof(IMapWith<>)))
                 .ToList();
-            //Комментарий
 
             foreach (var type in types) //в каждом типе вызываем метод mapping
             {
