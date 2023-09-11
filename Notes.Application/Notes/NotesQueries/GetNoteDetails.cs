@@ -21,6 +21,11 @@ namespace Notes.Application.Notes.NotesQueries
         public string Details { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime? EditDate { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            profile.CreateMap<Note, NoteDetailVm>();
+        }
     }
     public class GetNoteDetailsQuery : IRequest<NoteDetailVm>
     {

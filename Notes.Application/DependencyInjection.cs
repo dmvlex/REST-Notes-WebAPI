@@ -12,8 +12,7 @@ namespace Notes.Application
     //содержит методы регистрация групп сервисов с помощью методов расширения
     public static class DependencyInjection 
     {
-        public static IServiceCollection AddApplication (this IServiceCollection services
-            , IConfiguration configuration)
+        public static IServiceCollection AddApplication (this IServiceCollection services)
         {
             services.AddMediatR(cfg =>
             {
