@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using Notes.WebAPI.Middleware;
 
 namespace Notes.WebAPI
 {
@@ -47,13 +48,10 @@ namespace Notes.WebAPI
                     var context = scope.ServiceProvider.GetRequiredService<NotesDBContext>(); //получаем зависимость из контекста
                     DBInitializer.Initialize(context); //создаем базу данных
                 }
-                catch (Exception exception)
-                {
-
-                }
+                catch (Exception exception) { }
             }
 
-
+            app.UseCustomExceptionHandler(); //Обработчик исключений обязательно в начало
             app.UseHttpsRedirection(); //редиректим на https
             app.UseRouting(); // Добавляем эндпоинты
             app.UseCors("AllowAll"); //Включаем КОРС
