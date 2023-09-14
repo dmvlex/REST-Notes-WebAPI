@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Notes.Application.Notes.NotesCommands;
 using Notes.Application.Notes.NotesQueries;
@@ -18,6 +19,7 @@ namespace Notes.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<NoteListVm>> GetAll()
         {
             var query = new GetNoteListQuery
@@ -32,6 +34,7 @@ namespace Notes.WebAPI.Controllers
         }
 
         [HttpGet("{id}")] //таким образом к предыдущему роуту добавляется еще один элемент
+        [Authorize]
         public async Task<ActionResult<NoteDetailVm>> Get(Guid id)
         {
             var query = new GetNoteDetailsQuery
@@ -46,6 +49,7 @@ namespace Notes.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateNoteDto noteData) // [FromBody] - вытаскивать из тела запроса
         {
             var command = mapper.Map<CreateNoteCommand>(noteData);
@@ -59,6 +63,7 @@ namespace Notes.WebAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult> Update([FromBody] UpdateNoteDto newNoteData)
         {
             var command = mapper.Map<UpdateNoteCommand>(newNoteData);
@@ -70,6 +75,7 @@ namespace Notes.WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult> Delete(Guid id)
         {
             var command = new DeleteNoteCommand()
