@@ -52,6 +52,8 @@ namespace Notes.WebAPI
 
                 });
 
+            builder.Services.AddSwaggerGen();
+
             var app = builder.Build();
 
             using(var scope = app.Services.CreateScope())
@@ -63,6 +65,9 @@ namespace Notes.WebAPI
                 }
                 catch (Exception exception) { }
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
 
             app.UseCustomExceptionHandler(); //Обработчик исключений обязательно в начало
             app.UseHttpsRedirection(); //редиректим на https
