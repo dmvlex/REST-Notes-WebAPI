@@ -18,6 +18,9 @@ namespace Notes.WebAPI.Controllers
             mapper = _mapper;
         }
 
+        /// <summary>
+        /// Gets List of User Notes
+        /// </summary>
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<NoteListVm>> GetAll()
@@ -33,6 +36,10 @@ namespace Notes.WebAPI.Controllers
             //ахуенно, да?
         }
 
+        /// <summary>
+        /// Gets concrete note from ID
+        /// </summary>
+        /// <param name="id">Note ID</param>
         [HttpGet("{id}")] //таким образом к предыдущему роуту добавляется еще один элемент
         [Authorize]
         public async Task<ActionResult<NoteDetailVm>> Get(Guid id)
@@ -48,6 +55,9 @@ namespace Notes.WebAPI.Controllers
             return Ok(vm);
         }
 
+        /// <summary>
+        /// Create new note
+        /// </summary>
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] CreateNoteDto noteData) // [FromBody] - вытаскивать из тела запроса
@@ -62,6 +72,9 @@ namespace Notes.WebAPI.Controllers
             return Ok(noteId);
         }
 
+        /// <summary>
+        /// Update note by ID
+        /// </summary>
         [HttpPut]
         [Authorize]
         public async Task<ActionResult> Update([FromBody] UpdateNoteDto newNoteData)
@@ -74,6 +87,10 @@ namespace Notes.WebAPI.Controllers
             return NoContent(); //204. Запрос удачный, но без контента
         }
 
+        /// <summary>
+        /// Delete note by ID
+        /// </summary>
+        /// <param name="id">Note ID</param>
         [HttpDelete("{id}")]
         [Authorize]
         public async Task<ActionResult> Delete(Guid id)

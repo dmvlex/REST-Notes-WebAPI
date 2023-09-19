@@ -67,7 +67,11 @@ namespace Notes.WebAPI
             }
 
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(options =>
+            {
+                options.RoutePrefix = string.Empty;
+                options.SwaggerEndpoint("swagger/v1/swagger.json","NoteWebApi");
+            });
 
             app.UseCustomExceptionHandler(); //Обработчик исключений обязательно в начало
             app.UseHttpsRedirection(); //редиректим на https
